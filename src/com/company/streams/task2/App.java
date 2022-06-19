@@ -1,8 +1,5 @@
 package com.company.streams.task2;
 
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -35,17 +32,27 @@ public class App {
         userInput = userInput.trim();
         Pattern pattern = Pattern.compile("^\\d{2}-\\d{4}$");
         Matcher matcher = pattern.matcher(userInput);
+        Integer[] date = new Integer[2];
         if (!matcher.find()) {
-            System.out.println("Incorrect input. Try again");
-            userInput();
+            System.out.println("Incorrect input. We set default value as 06-2022.");
+            date[0] = 06;
+            date[1] = 2022;
+            return date;
         }
-        String dateMonth = userInput.substring(0, 2);
-        String dateYear = userInput.substring(3);
-        if (Integer.parseInt(dateMonth) > 12 || Integer.parseInt(dateMonth) < 1 || Integer.parseInt(dateYear) == 0) {
-            System.out.println("Incorrect input. Try again");
-            userInput();
+        try {
+            String dateMonth = userInput.substring(0, 2);
+            String dateYear = userInput.substring(3);
+            if (Integer.parseInt(dateMonth) > 12 || Integer.parseInt(dateMonth) < 1
+                    || Integer.parseInt(dateYear) == 0) {
+                System.out.println("Incorrect input. We set default value as 06-2022.");
+                date[0] = 06;
+                date[1] = 2022;
+                return date;
+            }
+            date = new Integer[] { Integer.parseInt(dateMonth), Integer.parseInt(dateYear) };
+        } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
+            throw new RuntimeException("Incorrect input. ");
         }
-        Integer[] date = new Integer[] { Integer.parseInt(dateMonth), Integer.parseInt(dateYear) };
         return date;
     }
 }
