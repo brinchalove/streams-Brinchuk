@@ -22,7 +22,7 @@ public class App {
         scanner.nextLine();
         System.out.printf("Sorted list. %s",sort(getListOfWords(filename)));
     }
-
+    
     private static List<String> sort(List<String> list) {
         list.sort(new MyStringCoparator());
         return list;
