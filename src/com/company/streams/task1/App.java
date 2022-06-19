@@ -7,13 +7,28 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int year = scanner.nextInt();
+        int year = userInput();
         int i = 0;
             while (i < 12) {
             Calendar calendar = new GregorianCalendar(year, i, 1);
             int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-            System.out.printf("Month %s has %d days. %n", Month.of(++i), daysInMonth);
+            System.out.printf("Month %s in %d has %d days. %n", Month.of(++i), year, daysInMonth);
         }
+    }
+    public static Integer userInput() {
+        System.out.print("Input year: ");
+        Scanner scanner = new Scanner(System.in);
+        String str = scanner.nextLine();
+        Integer userInput = null;
+        try {
+            userInput = Integer.parseInt(str);
+        }catch (NumberFormatException e) {
+            throw new NumberFormatException("Incorrect input. ");
+        }
+        if(userInput < 1) {
+            System.out.println("Incorrect value. We set default value as 2022.");
+            userInput = 2022;
+        }
+        return userInput;
     }
 }
