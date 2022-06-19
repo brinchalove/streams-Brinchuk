@@ -21,7 +21,6 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
         System.out.printf("Sorted list. %s",sort(getListOfWords(filename)));
-
     }
 
     private static List<String> sort(List<String> list) {
@@ -84,17 +83,6 @@ public class App {
         }
         return list;
     }
-
-//    private static int wordsCounter(String filename) {
-//        String str = new String(getContent(filename));
-//        Pattern pattern = Pattern.compile("[A-Za-z]+([-]?[A-Za-z]*)+[!.,:;\\s ]*");
-//        Matcher matcher = pattern.matcher(str);
-//        int wordsCounter = 0;
-//        while (matcher.find()) {
-//            wordsCounter++;
-//        }
-//        return wordsCounter;
-//    }
 
     public static StringBuilder getContent(String filename) {
         StringBuilder content = new StringBuilder();

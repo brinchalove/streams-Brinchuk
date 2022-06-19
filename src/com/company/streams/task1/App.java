@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        int year = userInput();
+        solveTask(userInput());
+    }
+    private static void solveTask(int year) {
         int i = 0;
             while (i < 12) {
             Calendar calendar = new GregorianCalendar(year, i, 1);
