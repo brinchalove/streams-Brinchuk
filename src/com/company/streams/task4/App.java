@@ -18,6 +18,7 @@ public class App {
         System.out.printf("%.2f is average word length in text. %n", wordsAverageLength(getListOfWords(filename)));
         System.out.printf("There are %d these words in text. %n", isExist(getListOfWords(filename)));
         contains(getListOfWords(filename));
+        System.out.println("Press enter...");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
         System.out.printf("Sorted list. %s",sort(getListOfWords(filename)));
