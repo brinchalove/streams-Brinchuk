@@ -1,7 +1,9 @@
 package com.company.streams.task2;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,15 +13,16 @@ public class App {
         solveTask(userInput());
     }
 
-    private static void solveTask(Integer[] date) {
-        Calendar calendar = new GregorianCalendar(date[1], date[0] - 1, 1);
+    private static void solveTask(Integer[] userInputDate) {
+        LocalDate date = LocalDate.of(userInputDate[1], userInputDate[0], 1);
         int i = 1;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         System.out.println("MONDAYS:");
-        while (i <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
-            calendar.set(Calendar.DAY_OF_MONTH, i);
-            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-            if (dayOfWeek == 2) {
-                System.out.println(i + "." + date[0] + "." + date[1]);
+        while (i <= Month.of(userInputDate[0]).maxLength()) {
+            date = LocalDate.of(userInputDate[1], userInputDate[0], i);
+            if (date.getDayOfWeek() == DayOfWeek.MONDAY) {
+                String formattedDate = dtf.format(date);
+                System.out.println(formattedDate);
             }
             i++;
         }
