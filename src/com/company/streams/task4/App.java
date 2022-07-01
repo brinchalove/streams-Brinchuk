@@ -58,7 +58,7 @@ public class App {
     }
 
     private static long getWordsNumber(List<String> list) {
-        return list.stream().count();// list.size()
+        return list.size();
     }
 
     private static double wordsAverageLength(List<String> list) {
