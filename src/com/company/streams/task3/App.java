@@ -1,8 +1,8 @@
 package com.company.streams.task3;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.Month;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,24 +11,24 @@ public class App {
         solveTask(userInput());
     }
 
-    private static void solveTask(int year) {
-        Calendar calendar;
-        int i = 0;
+    private static void solveTask(Integer year) {
+        int i = 1;
         boolean isExist = false;
-        while (i < 12) {
-            calendar = new GregorianCalendar(year, i, 13);
-            if (calendar.get(Calendar.DAY_OF_WEEK) == 6) {
-                System.out.println(Month.of(i + 1) + " in " + year + " has Friday 13th.");
+        while (i <= 12) {
+            LocalDate date = LocalDate.of(year, i, 13);
+            if(date.getDayOfWeek() == DayOfWeek.FRIDAY) {
                 isExist = true;
+                System.out.println(Month.of(i) + " in " + year + " has Friday 13th.");
             }
             i++;
         }
         if(!isExist) {
             System.out.printf("Year %d no have fridays 13th. ", year);
         }
+        
     }
 
-    private static int userInput() {
+    private static Integer userInput() {
         System.out.print("Input year: ");
         int year;
         try {

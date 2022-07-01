@@ -1,23 +1,20 @@
 package com.company.streams.task1;
 
-import java.time.Month;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.Year;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         solveTask(userInput());
     }
-    private static void solveTask(int year) {
-        int i = 0;
-            while (i < 12) {
-            Calendar calendar = new GregorianCalendar(year, i, 1);
-            int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-            System.out.printf("Month %s in %d has %d days. %n", Month.of(++i), year, daysInMonth);
+    private static void solveTask(Integer userInputYear) {
+        Year year = Year.parse(userInputYear.toString());
+        int i = 1;
+        while (i <= 12) {
+            System.out.printf("Month %s in %d has %d days. %n", year.atMonth(i).getMonth(), userInputYear, year.atMonth(i++).lengthOfMonth());
         }
     }
-    public static Integer userInput() {
+    private static Integer userInput() {
         System.out.print("Input year: ");
         Scanner scanner = new Scanner(System.in);
         String str = scanner.nextLine();
