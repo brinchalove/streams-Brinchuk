@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        PrintDaysOfMonthInYear(getDaysOfMonthInYear(userInput()));
+        printDaysOfMonthInYear(getDaysOfMonthInYear(userInput()));
     }
 
-    private static void PrintDaysOfMonthInYear(HashMap<Integer, Integer> map) {
+    private static void printDaysOfMonthInYear(HashMap<Integer, Integer> map) {
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             System.out.printf("%s has %d days. %n", Month.of(entry.getKey()), entry.getValue());
         }
