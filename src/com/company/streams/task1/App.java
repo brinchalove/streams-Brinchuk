@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        printDaysOfMonthInYear(getDaysOfMonthInYear(userInput()));
+        printDaysOfMonthInYear(getDaysOfMonthInYear(getUserInput()));
     }
 
     private static void printDaysOfMonthInYear(HashMap<Integer, Integer> map) {
@@ -27,7 +27,7 @@ public class App {
         return map;
     }
 
-    private static Integer userInput() {
+    private static Integer getUserInput() {
         System.out.print("Input year: ");
         Scanner scanner = new Scanner(System.in);
         String str = scanner.nextLine();
