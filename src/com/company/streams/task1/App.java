@@ -1,33 +1,43 @@
 package com.company.streams.task1;
 
 import java.time.Month;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.Year;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        solveTask(userInput());
+        printDaysOfMonthInYear(getDaysOfMonthInYear(getUserInput()));
     }
-    private static void solveTask(int year) {
-        int i = 0;
-            while (i < 12) {
-            Calendar calendar = new GregorianCalendar(year, i, 1);
-            int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-            System.out.printf("Month %s in %d has %d days. %n", Month.of(++i), year, daysInMonth);
+
+    private static void printDaysOfMonthInYear(HashMap<Integer, Integer> map) {
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            System.out.printf("%s has %d days. %n", Month.of(entry.getKey()), entry.getValue());
         }
     }
-    public static Integer userInput() {
+
+    private static HashMap<Integer, Integer> getDaysOfMonthInYear(Integer userInputYear) {
+        Year year = Year.parse(userInputYear.toString());
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int i = 1;
+        while (i <= 12) {
+            map.put(i, year.atMonth(i++).lengthOfMonth());
+        }
+        return map;
+    }
+
+    private static Integer getUserInput() {
         System.out.print("Input year: ");
         Scanner scanner = new Scanner(System.in);
         String str = scanner.nextLine();
         Integer userInput = null;
         try {
             userInput = Integer.parseInt(str);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new NumberFormatException("Incorrect input. ");
         }
-        if(userInput < 1) {
+        if (userInput < 1) {
             System.out.println("Incorrect value. We set default value as 2022.");
             userInput = 2022;
         }
